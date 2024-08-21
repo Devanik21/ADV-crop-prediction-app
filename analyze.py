@@ -26,3 +26,9 @@ def show_analyze():
     cax = ax.matshow(corr, cmap='coolwarm')
     fig.colorbar(cax)
     st.pyplot(fig)
+    
+    st.subheader("Heatmap")
+    fig, ax = plt.subplots()
+    sns.heatmap(df[numeric_columns].corr(), annot=True, cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
+
