@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show_insights():
-    st.title("Crop Insights")
+    st.title(" 🌾 Crop Insights")
 
     st.markdown("""
     Get detailed insights on the recommended crops.
