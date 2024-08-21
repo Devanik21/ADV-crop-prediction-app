@@ -26,6 +26,9 @@ def show_insights():
         color: #F5F5F5; /* Soft White for insight titles */
         font-weight: bold;
     }
+    p {
+        color: #F5F5F5; /* Soft White for paragraph text */
+    }
     </style>
     <div class="main-title">Crop Insights</div>
     <div class="insights-body">
