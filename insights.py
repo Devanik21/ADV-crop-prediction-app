@@ -12,27 +12,22 @@ def show_insights():
         margin-bottom: 20px;
     }
     .insights-body {
-        background-color: #F5F5F5; /* Light background for the body */
+        background-color: #282c34; /* Dark background for the body */
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        font-family: 'Arial', sans-serif;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     }
     .insight {
         font-size: 1.2em;
-        margin: 15px 0;
-        padding: 10px;
-        border-left: 5px solid #4CAF50; /* Green border for emphasis */
-        background-color: #FFFFFF; /* White background for insights */
-        border-radius: 5px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 10px 0;
+        color: #E0E0E0; /* Light grey for the text */
     }
     .insight-title {
-        color: #FF5722; /* Orange for insight titles */
+        color: #FFEB3B; /* Yellow for insight titles */
         font-weight: bold;
     }
     p {
-        color: #333333; /* Dark grey for paragraph text */
+        color: #B0BEC5; /* Light Blue Grey for paragraph text */
     }
     </style>
     <div class="main-title">Crop Insights</div>
