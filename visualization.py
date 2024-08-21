@@ -14,6 +14,7 @@ def show_visualization():
     # Filter numeric columns for selection
     numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
     
+    # Allow user to select only numeric columns for scatter plot
     x_axis = st.selectbox("Select X-axis", numeric_columns)
     y_axis = st.selectbox("Select Y-axis", numeric_columns)
     
@@ -21,5 +22,8 @@ def show_visualization():
     sns.scatterplot(x=df[x_axis], y=df[y_axis], hue=df['label'], ax=ax)
     st.pyplot(fig)
     
-   
+    st.subheader("Heatmap")
+    fig, ax = plt.subplots()
+    sns.heatmap(df[numeric_columns].corr(), annot=True, cmap='coolwarm', ax=ax)
+    st.pyplot(fig)
 
