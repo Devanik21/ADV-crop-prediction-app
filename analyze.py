@@ -12,7 +12,7 @@ def show_analyze():
     st.write(df.head())
     
     st.subheader("Feature Distributions")
-    feature = st.selectbox("Select a feature to visualize", df.columns[:-1])
+    feature = st.selectbox("Select a feature to visualize", df.columns[:,:-1])
     
     fig, ax = plt.subplots()
     df[feature].hist(ax=ax, bins=20)
