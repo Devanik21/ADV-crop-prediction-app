@@ -20,7 +20,7 @@ def show_sustainability():
     .tip {
         font-size: 1.2em;
         margin: 10px 0;
-        color: #D6CFC3;
+        color: #F5F5F5;
     }
     .tip-title {
         color: #4682B4;
