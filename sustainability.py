@@ -12,7 +12,7 @@ def show_sustainability():
         margin-bottom: 20px;
     }
     .sustainability-tips {
-        background-color: #F0F8FF;
+        background-color: #000000;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
