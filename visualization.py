@@ -21,8 +21,5 @@ def show_visualization():
     sns.scatterplot(x=df[x_axis], y=df[y_axis], hue=df['label'], ax=ax)
     st.pyplot(fig)
     
-    st.subheader("Heatmap")
-    fig, ax = plt.subplots()
-    sns.heatmap(df.corr(), annot=True, cmap='coolwarm', ax=ax)
-    st.pyplot(fig)
+   
 
