@@ -6,13 +6,13 @@ def show_insights():
     st.markdown("""
     <style>
     .main-title {
-        color: #F5F5F5; /* Soft White for the title text */
+        color: #4CAF50; /* Green for the title text */
         font-size: 2.5em;
         text-align: center;
         margin-bottom: 20px;
     }
     .insights-body {
-        background-color: #000000; /* Black background for the body */
+        background-color: #282c34; /* Dark background for the body */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -20,14 +20,14 @@ def show_insights():
     .insight {
         font-size: 1.2em;
         margin: 10px 0;
-        color: #F5F5F5; /* Soft White for the text */
+        color: #E0E0E0; /* Light grey for the text */
     }
     .insight-title {
-        color: #F5F5F5; /* Soft White for insight titles */
+        color: #FFEB3B; /* Yellow for insight titles */
         font-weight: bold;
     }
     p {
-        color: #F5F5F5; /* Soft White for paragraph text */
+        color: #B0BEC5; /* Light Blue Grey for paragraph text */
     }
     </style>
     <div class="main-title">Crop Insights</div>
