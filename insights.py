@@ -6,24 +6,24 @@ def show_insights():
     st.markdown("""
     <style>
     .main-title {
-        color: #2E8B57; /* Dark green for the title */
+        color: #F5F5F5; /* Soft White for the title text */
         font-size: 2.5em;
         text-align: center;
         margin-bottom: 20px;
     }
     .insights-body {
-        background-color: #000000; /* Soft White for the body background */
+        background-color: #000000; /* Black background for the body */
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     }
     .insight {
         font-size: 1.2em;
         margin: 10px 0;
-        color:#F5F5F5; /* Dark gray for text */
+        color: #F5F5F5; /* Soft White for the text */
     }
     .insight-title {
-        color: #4682B4; /* Steel Blue for titles */
+        color: #F5F5F5; /* Soft White for insight titles */
         font-weight: bold;
     }
     </style>
