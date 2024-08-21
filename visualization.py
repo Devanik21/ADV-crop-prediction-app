@@ -10,8 +10,12 @@ def show_visualization():
     st.title("Advanced Data Visualization")
     
     st.subheader("Scatter Plot")
-    x_axis = st.selectbox("Select X-axis", df.columns[:-1])
-    y_axis = st.selectbox("Select Y-axis", df.columns[:-1])
+    
+    # Filter numeric columns for selection
+    numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
+    
+    x_axis = st.selectbox("Select X-axis", numeric_columns)
+    y_axis = st.selectbox("Select Y-axis", numeric_columns)
     
     fig, ax = plt.subplots()
     sns.scatterplot(x=df[x_axis], y=df[y_axis], hue=df['label'], ax=ax)
@@ -21,3 +25,4 @@ def show_visualization():
     fig, ax = plt.subplots()
     sns.heatmap(df.corr(), annot=True, cmap='coolwarm', ax=ax)
     st.pyplot(fig)
+
