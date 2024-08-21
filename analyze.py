@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 # Load the dataset
 df = pd.read_csv("Crop_recommendation.csv")
-
+# Filter numeric columns for selection
+numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
 def show_analyze():
     st.title("Data Analysis and Visualization")
     
