@@ -6,6 +6,7 @@ from comparison import show_comparison
 from visualization import show_visualization
 from sustainability import show_sustainability
 from insights import show_insights
+from about import show_about  # Assuming you have a function to show the About page
 
 # Apply custom CSS for a modern look
 st.markdown(
@@ -54,7 +55,7 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# Create a sidebar for navigation with a selectbox slider
+# Create a sidebar for navigation with a selectbox slider for main sections
 st.sidebar.title("🌟 Navigation")
 page = st.sidebar.selectbox("Choose a Section:", 
                             ["🏠 Home", 
@@ -65,7 +66,12 @@ page = st.sidebar.selectbox("Choose a Section:",
                              "🌍 Sustainability Tips", 
                              "🌱 Crop Insights"])
 
-# Display the selected page
+# Create a sidebar selectbox for 'About the App'
+st.sidebar.title("ℹ️ About the App")
+about_page = st.sidebar.selectbox("Learn More:", 
+                                  ["Overview", "Features", "How It Works", "Credits"])
+
+# Display the selected page for main sections
 if page == "🏠 Home":
     show_home()
 elif page == "🔍 Predict":
@@ -80,3 +86,13 @@ elif page == "🌍 Sustainability Tips":
     show_sustainability()
 elif page == "🌱 Crop Insights":
     show_insights()
+
+# Display the selected 'About the App' page
+if about_page == "Overview":
+    show_about("overview")  # Pass a parameter to load the correct content
+elif about_page == "Features":
+    show_about("features")
+elif about_page == "How It Works":
+    show_about("how_it_works")
+elif about_page == "Credits":
+    show_about("credits")
