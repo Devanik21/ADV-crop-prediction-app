@@ -25,15 +25,17 @@ st.markdown(
         font-size: 30px;
     }
 
-    /* Style the sidebar radio buttons */
-    .sidebar .sidebar-content .stRadio > label {
+    /* Style the sidebar selectbox */
+    .sidebar .sidebar-content .stSelectbox label {
         color: #FFFFFF;
         font-size: 20px;
     }
     
-    /* Style the selected radio button */
-    .sidebar .sidebar-content .stRadio div[role=radiogroup] label span[data-baseweb=radio] {
+    /* Style the selectbox */
+    .sidebar .sidebar-content .stSelectbox div[data-baseweb=select] > div {
         background-color: #FF5733;
+        color: #FFFFFF;
+        font-size: 20px;
     }
     
     /* Style the selected page content */
@@ -52,16 +54,16 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# Create a sidebar for navigation with a modern look
+# Create a sidebar for navigation with a selectbox slider
 st.sidebar.title("🌟 Navigation")
-page = st.sidebar.radio("Choose a Section:", 
-                        ["🏠 Home", 
-                         "🔍 Predict", 
-                         "📊 Analyze", 
-                         "🌾 Crop Comparison", 
-                         "📈 Advanced Visualization", 
-                         "🌍 Sustainability Tips", 
-                         "🌱 Crop Insights"])
+page = st.sidebar.selectbox("Choose a Section:", 
+                            ["🏠 Home", 
+                             "🔍 Predict", 
+                             "📊 Analyze", 
+                             "🌾 Crop Comparison", 
+                             "📈 Advanced Visualization", 
+                             "🌍 Sustainability Tips", 
+                             "🌱 Crop Insights"])
 
 # Display the selected page
 if page == "🏠 Home":
