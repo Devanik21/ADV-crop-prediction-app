@@ -28,6 +28,5 @@ def show_about(section):
     elif section == "credits":
         st.title("Credits")
         st.write("""
-        This app was developed by [Your Name/Team Name]. Special thanks to the contributors and the open-source 
-        community for their valuable resources and tools.
+        This app was developed by Devanik with the assistance of AI. 
         """)
