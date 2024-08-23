@@ -50,3 +50,5 @@ def show_analyze():
         sns.heatmap(df[selected_columns].corr(), annot=True, cmap='coolwarm', ax=ax)
         ax.set_title('Heatmap of Selected Features')
         st.pyplot(fig)
+    else:
+        st.warning("Please select at least one column to display the heatmap.")
