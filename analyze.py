@@ -71,13 +71,7 @@ def show_analyze():
     ax.set_ylabel('Density')
     st.pyplot(fig)
 
-    # Violin Plot
-    violin_feature = st.selectbox("Select a feature for Violin plot", numeric_columns)
-    fig, ax = plt.subplots()
-    sns.violinplot(x=df[violin_feature], ax=ax, color='orange')
-    ax.set_title(f'Violin Plot of {violin_feature}')
-    st.pyplot(fig)
-
+    
     # Pair Plot (for a subset of features to avoid clutter)
     pair_features = st.multiselect("Select features for pair plot", numeric_columns, default=numeric_columns[:3])
     if len(pair_features) > 1:
