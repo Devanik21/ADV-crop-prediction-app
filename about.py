@@ -41,13 +41,14 @@ def show_about(section):
         Navigate through the app's sections to utilize these features effectively and gain valuable insights into crop management.
         """)
 
-    elif section == "credits":
+    if section == "credits":
         st.subheader("Credits")
         st.markdown("""
-        Developed by [Devanik](https://www.linkedin.com/in/devanik/) with support from AI technologies. Special thanks to all contributors and supporters who made this project possible.
-        
-        ![Acknowledgments](u.png)  <!-- Replace with an actual image URL if needed -->
+        Developed by [Devanik](https://www.linkedin.com/in/devanik/) with support from AI technologies. 
+        Special thanks to all contributors and supporters who made this project possible.
         """)
+        # Display the image
+        st.image("u.png", caption="Acknowledgments", use_column_width=True)
 
     # Style enhancements for a modern look
     st.markdown("""
