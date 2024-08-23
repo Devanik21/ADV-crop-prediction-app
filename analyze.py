@@ -56,7 +56,7 @@ def show_analyze():
     y_axis = st.selectbox("Select Y-axis feature for scatter plot", numeric_columns)
     if x_axis and y_axis:
         fig, ax = plt.subplots()
-        ax.scatter(df[x_axis], df[y_axis], alpha=0.5, color='#8B4513')  # #8B4513 is a shade of brown
+        ax.scatter(df[x_axis], df[y_axis], alpha=0.5, color='#b1f6fc')  # #8B4513 is a shade of brown
         ax.set_xlabel(x_axis)
         ax.set_ylabel(y_axis)
         ax.set_title(f'Scatter Plot of {x_axis} vs {y_axis}')
