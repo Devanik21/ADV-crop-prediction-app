@@ -77,7 +77,7 @@ def show_analyze():
     st.markdown("""
     <style>
     .main .block-container {
-        background-color: #f4f4f9;
+        background-color: #000000;
     }
     .css-18e3th9 { font-family: 'Arial', sans-serif; }
     .css-1v0mbdj { color: #1f77b4; }
