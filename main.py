@@ -55,6 +55,9 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+# Add image to the sidebar
+st.sidebar.image("sidebar_image.png", use_column_width=True)  # Update 'sidebar_image.png' with your image file name
+
 # Create a sidebar for navigation with a selectbox slider for main sections
 st.sidebar.title("🌟 Navigation")
 page = st.sidebar.selectbox("Choose a Section:", 
