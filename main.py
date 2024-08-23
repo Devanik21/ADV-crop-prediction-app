@@ -65,7 +65,7 @@ page = st.sidebar.selectbox("Choose a Section:",
                              "📈 Advanced Visualization", 
                              "🌍 Sustainability Tips", 
                              "🌱 Crop Insights"
-                             "ℹ️ About"])
+                             ])
 
 # Create a sidebar selectbox for 'About the App'
 st.sidebar.title("ℹ️ About the App")
