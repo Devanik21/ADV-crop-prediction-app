@@ -20,7 +20,8 @@ def user_input_features():
             min_value=min_value,
             max_value=max_value,
             value=default_value,
-            step=(max_value - min_value) / 100
+            step=(max_value - min_value) / 100,
+            key=col  # Assign the column name as the unique key
         )
 
     input_df = pd.DataFrame(features, index=[0])
