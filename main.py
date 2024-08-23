@@ -6,7 +6,7 @@ from comparison import show_comparison
 from visualization import show_visualization
 from sustainability import show_sustainability
 from insights import show_insights
-from about import show_about  # Assuming you have a function to show the About page
+from about import show_about
 
 # Apply custom CSS for a modern look
 st.markdown(
@@ -90,10 +90,25 @@ elif page == "🌱 Crop Insights":
 
 # Display the selected 'About the App' page
 if about_page == "Overview":
-    show_about("overview")  # Pass a parameter to load the correct content
+    show_about("overview")
 elif about_page == "Features":
     show_about("features")
 elif about_page == "How It Works":
     show_about("how_it_works")
 elif about_page == "Credits":
     show_about("credits")
+
+# In the 'Features' section, add all the key features
+def show_about(page):
+    if page == "features":
+        st.header("Key Features")
+        st.write("""
+        - **Mining Site Recommendation**: Get tailored mining site suggestions based on your preferences.
+        - **Predict Mining Potential**: Predict the potential of a mining site with advanced models.
+        - **Advanced Visualizations**: Analyze data with rich, interactive visualizations.
+        - **Sustainability Tips**: Learn best practices for sustainable mining.
+        - **Crop Comparison**: Compare crop performance under different conditions.
+        - **Mining Site Analysis**: In-depth analysis of various mining sites for better decision-making.
+        - **Interactive Insights**: Gain actionable insights with our interactive data analysis tools.
+        - **User-Friendly Interface**: Navigate seamlessly with our modern, intuitive UI.
+        """)
