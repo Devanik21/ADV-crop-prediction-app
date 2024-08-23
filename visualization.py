@@ -55,8 +55,15 @@ def show_visualization():
     pair_features = st.multiselect("Select Features for Pair Plot", options=numeric_columns, default=numeric_columns[:2])
     
     if len(pair_features) > 1:
-        fig = sns.pairplot(df[pair_features], hue='label')
-        st.pyplot(fig)
+        # Ensure the data does not contain missing values
+        pair_df = df[pair_features].dropna()
+        
+        # Check if there are enough unique values for pairplot
+        if pair_df.shape[1] > 1:
+            fig = sns.pairplot(pair_df, hue=df['label'].loc[pair_df.index])
+            st.pyplot(fig)
+        else:
+            st.warning("Please select at least two features with enough unique values for the pair plot.")
     else:
         st.warning("Please select at least two features for the pair plot.")
     
