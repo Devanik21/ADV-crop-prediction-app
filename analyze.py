@@ -72,12 +72,7 @@ def show_analyze():
     st.pyplot(fig)
 
     
-    # Pair Plot (for a subset of features to avoid clutter)
-    pair_features = st.multiselect("Select features for pair plot", numeric_columns, default=numeric_columns[:3])
-    if len(pair_features) > 1:
-        fig = sns.pairplot(df[pair_features])
-        st.pyplot(fig)
-
+    
     # Customizing plot appearance
     st.markdown("""
     <style>
