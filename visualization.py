@@ -49,35 +49,6 @@ def show_visualization():
     ax.set_title(f'Box Plot of {box_feature}')
     st.pyplot(fig)
     
-    # Pair Plot Section
-    st.subheader("Pair Plot")
-    
-    pair_features = st.multiselect("Select Features for Pair Plot", options=numeric_columns, default=numeric_columns[:2])
-    
-    if len(pair_features) > 1:
-        # Ensure the data does not contain missing values
-        pair_df = df[pair_features].dropna()
-        
-        # Check if there are enough unique values for pairplot
-        if pair_df.shape[1] > 1:
-            fig = sns.pairplot(pair_df, hue=df['label'].loc[pair_df.index])
-            st.pyplot(fig)
-        else:
-            st.warning("Please select at least two features with enough unique values for the pair plot.")
-    else:
-        st.warning("Please select at least two features for the pair plot.")
-    
-    # Line Plot Section
-    st.subheader("Line Plot")
-    
-    line_feature = st.selectbox("Select Feature for Line Plot", numeric_columns)
-    
-    fig, ax = plt.subplots()
-    df.sort_values(by=line_feature).plot(x=line_feature, y=line_feature, kind='line', ax=ax, color='orange')
-    ax.set_xlabel(line_feature)
-    ax.set_ylabel('Value')
-    ax.set_title(f'Line Plot of {line_feature}')
-    st.pyplot(fig)
     
     # Violin Plot Section
     st.subheader("Violin Plot")
