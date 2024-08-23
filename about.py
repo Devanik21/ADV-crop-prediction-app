@@ -46,7 +46,7 @@ def show_about(section):
         st.markdown("""
         Developed by [Devanik](https://www.linkedin.com/in/devanik/) with support from AI technologies. Special thanks to all contributors and supporters who made this project possible.
         
-        ![Acknowledgments](https://example.com/acknowledgments_image.png)  <!-- Replace with an actual image URL if needed -->
+        ![Acknowledgments](u.png)  <!-- Replace with an actual image URL if needed -->
         """)
 
     # Style enhancements for a modern look
