@@ -56,7 +56,7 @@ st.markdown(
 )
 
 # Add image to the sidebar
-st.sidebar.image("sidebar_image.png", use_column_width=True)  # Update 'sidebar_image.png' with your image file name
+st.sidebar.image("closeup-shot-rice-plant-sunset-with-plantation-background.png", use_column_width=True)  # Update 'sidebar_image.png' with your image file name
 
 # Create a sidebar for navigation with a selectbox slider for main sections
 st.sidebar.title("🌟 Navigation")
