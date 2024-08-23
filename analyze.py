@@ -31,7 +31,7 @@ def show_analyze():
     corr = numeric_df.corr()
     st.write(corr)
     
-    # Create a heatmap for the correlation matrix
+    # Create a correlation matrix plot
     fig, ax = plt.subplots()
     cax = ax.matshow(corr, cmap='coolwarm')
     fig.colorbar(cax)
@@ -42,13 +42,30 @@ def show_analyze():
     ax.set_title('Correlation Matrix')
     st.pyplot(fig)
 
-    st.subheader("Heatmap")
-    selected_columns = st.multiselect("Select columns for heatmap", numeric_columns, default=numeric_columns)
-    
-    if selected_columns:
-        fig, ax = plt.subplots()
-        sns.heatmap(df[selected_columns].corr(), annot=True, cmap='coolwarm', ax=ax)
-        ax.set_title('Heatmap of Selected Features')
+    st.subheader("Additional Analysis")
+
+    # Box Plot
+    box_feature = st.selectbox("Select a feature for box plot", numeric_columns)
+    fig, ax = plt.subplots()
+    sns.boxplot(x=df[box_feature], ax=ax, color='lightblue')
+    ax.set_title(f'Box Plot of {box_feature}')
+    st.pyplot(fig)
+
+    # Pair Plot
+    pair_columns = st.multiselect("Select columns for pair plot", numeric_columns, default=numeric_columns)
+    if len(pair_columns) > 1:
+        fig = sns.pairplot(df[pair_columns])
         st.pyplot(fig)
     else:
-        st.warning("Please select at least one column to display the heatmap.")
+        st.warning("Please select at least two columns for the pair plot.")
+        
+    # Scatter Plot
+    x_axis = st.selectbox("Select X-axis feature for scatter plot", numeric_columns)
+    y_axis = st.selectbox("Select Y-axis feature for scatter plot", numeric_columns)
+    if x_axis and y_axis:
+        fig, ax = plt.subplots()
+        ax.scatter(df[x_axis], df[y_axis], alpha=0.5)
+        ax.set_xlabel(x_axis)
+        ax.set_ylabel(y_axis)
+        ax.set_title(f'Scatter Plot of {x_axis} vs {y_axis}')
+        st.pyplot(fig)
