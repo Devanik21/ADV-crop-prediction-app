@@ -61,3 +61,36 @@ def show_analyze():
         ax.set_ylabel(y_axis)
         ax.set_title(f'Scatter Plot of {x_axis} vs {y_axis}')
         st.pyplot(fig)
+
+    # KDE Plot
+    kde_feature = st.selectbox("Select a feature for KDE plot", numeric_columns)
+    fig, ax = plt.subplots()
+    sns.kdeplot(df[kde_feature], ax=ax, fill=True, color='purple')
+    ax.set_title(f'KDE Plot of {kde_feature}')
+    ax.set_xlabel(kde_feature)
+    ax.set_ylabel('Density')
+    st.pyplot(fig)
+
+    # Violin Plot
+    violin_feature = st.selectbox("Select a feature for Violin plot", numeric_columns)
+    fig, ax = plt.subplots()
+    sns.violinplot(x=df[violin_feature], ax=ax, color='orange')
+    ax.set_title(f'Violin Plot of {violin_feature}')
+    st.pyplot(fig)
+
+    # Pair Plot (for a subset of features to avoid clutter)
+    pair_features = st.multiselect("Select features for pair plot", numeric_columns, default=numeric_columns[:3])
+    if len(pair_features) > 1:
+        fig = sns.pairplot(df[pair_features])
+        st.pyplot(fig)
+
+    # Customizing plot appearance
+    st.markdown("""
+    <style>
+    .main .block-container {
+        background-color: #f4f4f9;
+    }
+    .css-18e3th9 { font-family: 'Arial', sans-serif; }
+    .css-1v0mbdj { color: #1f77b4; }
+    </style>
+    """, unsafe_allow_html=True)
