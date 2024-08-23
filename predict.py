@@ -67,7 +67,7 @@ def show_predict():
     st.markdown(
         f"""
         <div style="background-color: {bg_color}; padding: 20px; border-radius: 10px;">
-            <h2 style="color: #000000; text-align: center;">
+            <h2 style="color: #95dff5; text-align: center;">
                 🌾 The recommended crop based on the input features is: <strong>{prediction}</strong>
             </h2>
         </div>
