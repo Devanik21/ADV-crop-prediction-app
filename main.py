@@ -8,6 +8,13 @@ from sustainability import show_sustainability
 from insights import show_insights
 from about import show_about
 
+st.set_page_config(
+    page_title="Crop Recommendation System",
+    page_icon="🌾",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 # Apply custom CSS for a modern look
 st.markdown(
     """
