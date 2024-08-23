@@ -75,11 +75,4 @@ def show_predict():
     )
 
     # Optional note
-    st.markdown("""
-    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-        <strong>Note:</strong> The prediction is based on the model's analysis of key agricultural factors.
-    </div>
-    """, unsafe_allow_html=True)
-
-# Call the function to display the prediction page
-show_predict()
+   
