@@ -42,7 +42,7 @@ def show_analyze():
     ax.set_title('Correlation Matrix')
     st.pyplot(fig)
 
-    st.subheader("Additional Analysis")
+    st.subheader("More Advanced Analysis")
 
     # Box Plot
     box_feature = st.selectbox("Select a feature for box plot", numeric_columns)
@@ -51,14 +51,6 @@ def show_analyze():
     ax.set_title(f'Box Plot of {box_feature}')
     st.pyplot(fig)
 
-    # Pair Plot
-    pair_columns = st.multiselect("Select columns for pair plot", numeric_columns, default=numeric_columns)
-    if len(pair_columns) > 1:
-        fig = sns.pairplot(df[pair_columns])
-        st.pyplot(fig)
-    else:
-        st.warning("Please select at least two columns for the pair plot.")
-        
     # Scatter Plot
     x_axis = st.selectbox("Select X-axis feature for scatter plot", numeric_columns)
     y_axis = st.selectbox("Select Y-axis feature for scatter plot", numeric_columns)
