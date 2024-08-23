@@ -45,7 +45,7 @@ def show_about(section):
         st.subheader("Credits")
         st.markdown("""
         Developed by [Devanik](https://www.linkedin.com/in/devanik/) with support from AI technologies. 
-        Special thanks to all contributors and supporters who made this project possible.
+        Special thanks to all the supporters who made this project possible.
         """)
         # Display the image
         st.image("u.png", caption="Acknowledgments", use_column_width=True)
