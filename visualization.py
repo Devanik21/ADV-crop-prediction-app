@@ -59,7 +59,7 @@ def show_visualization():
     sns.violinplot(x=df['label'], y=df[violin_feature], ax=ax, palette='muted')
 
 # Set x-ticks with rotation for better readability
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=60, ha='right')
 
     ax.set_xlabel('Crop Label')
     ax.set_ylabel(violin_feature)
