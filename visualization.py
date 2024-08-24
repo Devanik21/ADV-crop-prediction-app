@@ -51,12 +51,12 @@ def show_visualization():
     
     
     # Violin Plot Section
-     st.subheader("Violin Plot")
+    st.subheader("Violin Plot")
 
-     violin_feature = st.selectbox("Select Feature for Violin Plot", numeric_columns)
+    violin_feature = st.selectbox("Select Feature for Violin Plot", numeric_columns)
 
-     fig, ax = plt.subplots()
-     sns.violinplot(x=df['label'], y=df[violin_feature], ax=ax, palette='muted')
+    fig, ax = plt.subplots()
+    sns.violinplot(x=df['label'], y=df[violin_feature], ax=ax, palette='muted')
 
 # Set x-ticks with rotation for better readability
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
