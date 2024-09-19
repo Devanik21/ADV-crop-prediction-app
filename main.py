@@ -123,4 +123,4 @@ def show_about(page):
         - **User-Friendly Interface**: Navigate seamlessly with our modern, intuitive UI.
         """)
 
-st.sidebar.image("crop.jpg", use_column_width=True)
+st.sidebar.image("rural-scene-farm-corn-crop-nature-growth-generated-by-ai.jpg", use_column_width=True)
