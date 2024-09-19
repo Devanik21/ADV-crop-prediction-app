@@ -192,13 +192,25 @@ def show_analyze():
         ax.set_title(f'Density Plot of {density_feature} (Sampled)')
         st.pyplot(fig)
 
-    # 16. Count Plot
+# 16. Count Plot
     count_feature = st.selectbox("Select a feature for Count plot", numeric_columns)
     if count_feature:
-        fig, ax = plt.subplots()
-        sns.countplot(x=df_sampled[count_feature], ax=ax, palette='pastel')
-        ax.set_title(f'Count Plot of {count_feature} (Sampled)')
-        st.pyplot(fig)
+    # Increase image size (figsize) and decrease font sizes
+      fig, ax = plt.subplots(figsize=(10, 6))  # Increase figure size here
+      sns.countplot(x=df_sampled[count_feature], ax=ax, palette='pastel')
+    
+    # Adjust title, xlabel, and ylabel font sizes
+      ax.set_title(f'Count Plot of {count_feature} (Sampled)', fontsize=14)  # Decreased font size
+      ax.set_xlabel(count_feature, fontsize=12)  # Decreased font size
+      ax.set_ylabel('Count', fontsize=12)  # Decreased font size
+    
+    # Adjust the tick parameters
+      ax.tick_params(axis='x', labelsize=10)  # Font size of x-axis labels
+      ax.tick_params(axis='y', labelsize=10)  # Font size of y-axis labels
+    
+    # Display the plot
+      st.pyplot(fig)
+
 
     # Customizing plot appearance
     st.markdown("""
