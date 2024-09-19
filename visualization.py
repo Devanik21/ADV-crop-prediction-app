@@ -12,181 +12,194 @@ def show_visualization():
     # Filter numeric columns for selection
     numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
 
-    # 1. Pairplot
-    st.subheader("Pair Plot")
-    selected_pairplot_features = st.multiselect("Select features for Pair Plot", numeric_columns)
-    if selected_pairplot_features:
-        fig = sns.pairplot(df[selected_pairplot_features])
-        st.pyplot(fig)
-
-    # 2. Joint Plot
-    st.subheader("Joint Plot")
-    joint_x = st.selectbox("Select X for Joint Plot", numeric_columns)
-    joint_y = st.selectbox("Select Y for Joint Plot", numeric_columns, index=1)
-    if joint_x and joint_y:
-        fig = sns.jointplot(x=joint_x, y=joint_y, data=df, kind="hex", color='blue')
-        st.pyplot(fig)
-
-    # 3. Hexbin Plot
-    st.subheader("Hexbin Plot")
-    hex_x = st.selectbox("Select X for Hexbin Plot", numeric_columns)
-    hex_y = st.selectbox("Select Y for Hexbin Plot", numeric_columns, index=1)
-    if hex_x and hex_y:
+    # 1. Heatmap with Annotations
+    st.subheader("Heatmap with Annotations")
+    heatmap_feature = st.multiselect("Select Features for Heatmap with Annotations", numeric_columns)
+    if heatmap_feature:
         fig, ax = plt.subplots()
-        hb = ax.hexbin(df[hex_x], df[hex_y], gridsize=50, cmap='Blues')
-        cb = plt.colorbar(hb, ax=ax)
-        cb.set_label('Counts')
-        ax.set_xlabel(hex_x)
-        ax.set_ylabel(hex_y)
-        ax.set_title(f'Hexbin Plot of {hex_x} vs {hex_y}')
+        sns.heatmap(df[heatmap_feature].corr(), annot=True, cmap='coolwarm', ax=ax)
+        ax.set_title('Heatmap with Annotations')
         st.pyplot(fig)
 
-    # 4. Andrews Curves
-    st.subheader("Andrews Curves")
-    if 'label' in df.columns:
-        fig = plt.figure()
-        pd.plotting.andrews_curves(df, 'label')
-        plt.title('Andrews Curves')
-        st.pyplot(fig)
-
-    # 5. Rug Plot
-    st.subheader("Rug Plot")
-    rug_feature = st.selectbox("Select Feature for Rug Plot", numeric_columns)
-    if rug_feature:
-        fig, ax = plt.subplots()
-        sns.rugplot(df[rug_feature], ax=ax, color='red')
-        ax.set_title(f'Rug Plot of {rug_feature}')
-        st.pyplot(fig)
-
-    # 6. Regression Plot
-    st.subheader("Regression Plot")
-    reg_x = st.selectbox("Select X for Regression Plot", numeric_columns)
-    reg_y = st.selectbox("Select Y for Regression Plot", numeric_columns, index=1)
-    if reg_x and reg_y:
-        fig, ax = plt.subplots()
-        sns.regplot(x=df[reg_x], y=df[reg_y], ax=ax, scatter_kws={'s':10}, line_kws={'color':'red'})
-        ax.set_xlabel(reg_x)
-        ax.set_ylabel(reg_y)
-        ax.set_title(f'Regression Plot of {reg_x} vs {reg_y}')
-        st.pyplot(fig)
-
-    # 7. Heatmap
-    st.subheader("Heatmap")
-    heatmap_features = st.multiselect("Select features for Heatmap", numeric_columns)
-    if heatmap_features:
-        fig, ax = plt.subplots()
-        corr = df[heatmap_features].corr()
-        sns.heatmap(corr, annot=True, cmap='coolwarm', ax=ax)
-        ax.set_title('Heatmap of Selected Features')
-        st.pyplot(fig)
-
-    # 8. Density Plot
-    st.subheader("Density Plot")
-    density_feature = st.selectbox("Select Feature for Density Plot", numeric_columns)
-    if density_feature:
-        fig, ax = plt.subplots()
-        sns.kdeplot(df[density_feature], ax=ax, shade=True, color='purple')
-        ax.set_title(f'Density Plot of {density_feature}')
-        st.pyplot(fig)
-
-    # 9. FacetGrid
-    st.subheader("FacetGrid")
-    facet_feature = st.selectbox("Select Feature for FacetGrid", numeric_columns)
-    if facet_feature:
-        g = sns.FacetGrid(df, col='label', col_wrap=3, height=4)
-        g.map(sns.histplot, facet_feature)
-        g.set_titles(col_template="{col_name}")
+    # 2. Pair Grid
+    st.subheader("Pair Grid")
+    pairgrid_features = st.multiselect("Select Features for Pair Grid", numeric_columns)
+    if pairgrid_features:
+        g = sns.PairGrid(df[pairgrid_features])
+        g.map_lower(sns.scatterplot)
+        g.map_diag(sns.kdeplot)
         st.pyplot(g.fig)
 
-    # 10. ECDF (Empirical Cumulative Distribution Function) Plot
-    st.subheader("ECDF Plot")
-    ecdf_feature = st.selectbox("Select Feature for ECDF Plot", numeric_columns)
-    if ecdf_feature:
+    # 3. Regression Plot
+    st.subheader("Regression Plot")
+    reg_x = st.selectbox("Select X-axis for Regression Plot", numeric_columns)
+    reg_y = st.selectbox("Select Y-axis for Regression Plot", numeric_columns)
+    if reg_x and reg_y:
         fig, ax = plt.subplots()
-        sns.ecdfplot(df[ecdf_feature], ax=ax)
-        ax.set_title(f'ECDF Plot of {ecdf_feature}')
+        sns.regplot(x=df[reg_x], y=df[reg_y], ax=ax, color='blue')
+        ax.set_title(f'Regression Plot: {reg_x} vs {reg_y}')
         st.pyplot(fig)
 
-    # 11. Residual Plot
+    # 4. Residual Plot
     st.subheader("Residual Plot")
-    res_x = st.selectbox("Select X for Residual Plot", numeric_columns)
-    res_y = st.selectbox("Select Y for Residual Plot", numeric_columns, index=1)
+    res_x = st.selectbox("Select X-axis for Residual Plot", numeric_columns)
+    res_y = st.selectbox("Select Y-axis for Residual Plot", numeric_columns)
     if res_x and res_y:
         fig, ax = plt.subplots()
-        sns.residplot(x=df[res_x], y=df[res_y], ax=ax)
-        ax.set_xlabel(res_x)
-        ax.set_ylabel(res_y)
-        ax.set_title(f'Residual Plot of {res_x} vs {res_y}')
+        sns.residplot(x=df[res_x], y=df[res_y], ax=ax, color='orange')
+        ax.set_title(f'Residual Plot: {res_x} vs {res_y}')
         st.pyplot(fig)
 
-    # 12. Pairplot with KDE
-    st.subheader("Pairplot with KDE")
-    selected_pairplot_features = st.multiselect("Select features for Pairplot with KDE", numeric_columns)
-    if selected_pairplot_features:
-        fig = sns.pairplot(df[selected_pairplot_features], kind='kde')
-        st.pyplot(fig)
-
-    # 13. Joint Plot with KDE
+    # 5. Joint Plot with KDE
     st.subheader("Joint Plot with KDE")
     joint_x = st.selectbox("Select X for Joint Plot with KDE", numeric_columns)
-    joint_y = st.selectbox("Select Y for Joint Plot with KDE", numeric_columns, index=1)
+    joint_y = st.selectbox("Select Y for Joint Plot with KDE", numeric_columns)
     if joint_x and joint_y:
-        fig = sns.jointplot(x=joint_x, y=joint_y, data=df, kind="kde", color='purple')
+        fig = sns.jointplot(x=joint_x, y=joint_y, data=df, kind='kde', color='purple')
         st.pyplot(fig)
 
-    # 14. Violin Plot by Category
-    st.subheader("Violin Plot by Category")
-    violin_feature = st.selectbox("Select Feature for Violin Plot by Category", numeric_columns)
-    if violin_feature:
+    # 6. Rug Plot with KDE Overlay
+    st.subheader("Rug Plot with KDE Overlay")
+    rug_feature = st.selectbox("Select Feature for Rug Plot with KDE", numeric_columns)
+    if rug_feature:
         fig, ax = plt.subplots()
-        sns.violinplot(x='label', y=violin_feature, data=df, ax=ax, palette='pastel')
-        ax.set_title(f'Violin Plot of {violin_feature} by Category')
+        sns.kdeplot(df[rug_feature], ax=ax, color='red', fill=True)
+        sns.rugplot(df[rug_feature], ax=ax, color='blue')
+        ax.set_title(f'Rug Plot with KDE Overlay of {rug_feature}')
         st.pyplot(fig)
 
-    # 15. Boxen Plot
-    st.subheader("Boxen Plot")
-    boxen_feature = st.selectbox("Select Feature for Boxen Plot", numeric_columns)
-    if boxen_feature:
+    # 7. Hexbin Plot
+    st.subheader("Hexbin Plot")
+    hex_x = st.selectbox("Select X-axis for Hexbin Plot", numeric_columns)
+    hex_y = st.selectbox("Select Y-axis for Hexbin Plot", numeric_columns)
+    if hex_x and hex_y:
         fig, ax = plt.subplots()
-        sns.boxenplot(x=df[boxen_feature], ax=ax, color='orange')
-        ax.set_title(f'Boxen Plot of {boxen_feature}')
+        hb = ax.hexbin(df[hex_x], df[hex_y], gridsize=30, cmap='inferno')
+        fig.colorbar(hb, ax=ax)
+        ax.set_xlabel(hex_x)
+        ax.set_ylabel(hex_y)
+        ax.set_title(f'Hexbin Plot: {hex_x} vs {hex_y}')
         st.pyplot(fig)
 
-    # 16. Point Plot with Hue
-    st.subheader("Point Plot with Hue")
-    point_x = st.selectbox("Select X for Point Plot with Hue", numeric_columns)
-    point_y = st.selectbox("Select Y for Point Plot with Hue", numeric_columns, index=1)
-    if point_x and point_y:
+    # 8. Andrews Curves
+    st.subheader("Andrews Curves")
+    if 'label' in df.columns:
         fig, ax = plt.subplots()
-        sns.pointplot(x=df[point_x], y=df[point_y], hue=df['label'], ax=ax, palette='Set1')
-        ax.set_title(f'Point Plot of {point_x} vs {point_y} with Hue')
+        pd.plotting.andrews_curves(df, 'label', ax=ax)
+        ax.set_title('Andrews Curves')
         st.pyplot(fig)
 
-    # 17. Swarm Plot with Size
-    st.subheader("Swarm Plot with Size")
-    swarm_x = st.selectbox("Select X for Swarm Plot with Size", numeric_columns)
-    swarm_y = st.selectbox("Select Y for Swarm Plot with Size", numeric_columns, index=1)
-    if swarm_x and swarm_y:
+    # 9. Lag Plot
+    st.subheader("Lag Plot")
+    lag_feature = st.selectbox("Select Feature for Lag Plot", numeric_columns)
+    if lag_feature:
+        fig = sns.lag_plot(df[lag_feature])
+        st.pyplot(fig)
+
+    # 10. Parallel Coordinates
+    st.subheader("Parallel Coordinates")
+    if 'label' in df.columns:
         fig, ax = plt.subplots()
-        sns.swarmplot(x=df[swarm_x], y=df[swarm_y], size=8, ax=ax, palette='husl')
-        ax.set_title(f'Swarm Plot of {swarm_x} vs {swarm_y} with Size')
+        pd.plotting.parallel_coordinates(df, 'label', ax=ax)
+        ax.set_title('Parallel Coordinates')
         st.pyplot(fig)
 
-    # 18. Strip Plot with Jitter
-    st.subheader("Strip Plot with Jitter")
-    strip_feature = st.selectbox("Select Feature for Strip Plot with Jitter", numeric_columns)
-    if strip_feature:
+    # 11. Bubble Plot
+    st.subheader("Bubble Plot")
+    bubble_x = st.selectbox("Select X-axis for Bubble Plot", numeric_columns)
+    bubble_y = st.selectbox("Select Y-axis for Bubble Plot", numeric_columns)
+    bubble_size = st.selectbox("Select Size Feature for Bubble Plot", numeric_columns)
+    if bubble_x and bubble_y and bubble_size:
         fig, ax = plt.subplots()
-        sns.stripplot(x=df[strip_feature], jitter=True, ax=ax, color='pink')
-        ax.set_title(f'Strip Plot of {strip_feature} with Jitter')
+        sns.scatterplot(x=df[bubble_x], y=df[bubble_y], size=df[bubble_size], hue=df['label'], ax=ax, palette='viridis', sizes=(20, 200))
+        ax.set_xlabel(bubble_x)
+        ax.set_ylabel(bubble_y)
+        ax.set_title(f'Bubble Plot: {bubble_x} vs {bubble_y}')
         st.pyplot(fig)
 
-    # 19. Count Plot by Category
-    st.subheader("Count Plot by Category")
-    count_feature = st.selectbox("Select Feature for Count Plot by Category", numeric_columns)
-    if count_feature:
+    # 12. Heatmap of Feature Pair Correlations
+    st.subheader("Heatmap of Feature Pair Correlations")
+    feature_pair_heatmap = st.multiselect("Select Features for Pair Correlation Heatmap", numeric_columns)
+    if feature_pair_heatmap:
         fig, ax = plt.subplots()
-        sns.countplot(x=df[count_feature], ax=ax, palette='coolwarm')
-        ax.set_title(f'Count Plot of {count_feature} by Category')
+        sns.heatmap(df[feature_pair_heatmap].corr(), annot=True, cmap='coolwarm', ax=ax)
+        ax.set_title('Heatmap of Feature Pair Correlations')
         st.pyplot(fig)
 
+    # 13. Contour Plot
+    st.subheader("Contour Plot")
+    contour_x = st.selectbox("Select X-axis for Contour Plot", numeric_columns)
+    contour_y = st.selectbox("Select Y-axis for Contour Plot", numeric_columns)
+    if contour_x and contour_y:
+        fig, ax = plt.subplots()
+        sns.kdeplot(x=df[contour_x], y=df[contour_y], ax=ax, fill=True)
+        ax.set_title(f'Contour Plot: {contour_x} vs {contour_y}')
+        st.pyplot(fig)
+
+    # 14. Density Plot with Multiple Features
+    st.subheader("Density Plot with Multiple Features")
+    density_features = st.multiselect("Select Features for Multi-density Plot", numeric_columns)
+    if density_features:
+        fig, ax = plt.subplots()
+        for feature in density_features:
+            sns.kdeplot(df[feature], ax=ax, label=feature)
+        ax.legend()
+        ax.set_title('Density Plot with Multiple Features')
+        st.pyplot(fig)
+
+    # 15. Custom Plot with Regression and Residual
+    st.subheader("Custom Plot with Regression and Residual")
+    custom_x = st.selectbox("Select X-axis for Custom Plot", numeric_columns)
+    custom_y = st.selectbox("Select Y-axis for Custom Plot", numeric_columns)
+    if custom_x and custom_y:
+        fig, ax = plt.subplots()
+        sns.regplot(x=df[custom_x], y=df[custom_y], ax=ax, color='blue', label='Regression')
+        sns.residplot(x=df[custom_x], y=df[custom_y], ax=ax, color='red', label='Residual')
+        ax.set_title(f'Custom Plot with Regression and Residual: {custom_x} vs {custom_y}')
+        ax.legend()
+        st.pyplot(fig)
+
+    # 16. Facet Grid
+    st.subheader("Facet Grid")
+    facet_feature = st.selectbox("Select Feature for Facet Grid", numeric_columns)
+    if facet_feature:
+        g = sns.FacetGrid(df, col='label')
+        g.map(sns.histplot, facet_feature)
+        st.pyplot(g.fig)
+
+    # 17. Matrix Plot
+    st.subheader("Matrix Plot")
+    matrix_features = st.multiselect("Select Features for Matrix Plot", numeric_columns)
+    if matrix_features:
+        fig, ax = plt.subplots()
+        sns.plotting.matrix(df[matrix_features], ax=ax)
+        ax.set_title('Matrix Plot')
+        st.pyplot(fig)
+
+    # 18. Cat Plot
+    st.subheader("Cat Plot")
+    cat_feature = st.selectbox("Select Feature for Cat Plot", numeric_columns)
+    if cat_feature:
+        fig, ax = plt.subplots()
+        sns.catplot(x='label', y=cat_feature, kind='bar', data=df, ax=ax)
+        ax.set_title(f'Cat Plot: {cat_feature} by Label')
+        st.pyplot(fig)
+
+    # 19. Time Series Plot
+    st.subheader("Time Series Plot")
+    if 'Date' in df.columns:
+        time_series_feature = st.selectbox("Select Feature for Time Series Plot", numeric_columns)
+        fig, ax = plt.subplots()
+        df['Date'] = pd.to_datetime(df['Date'])
+        df.set_index('Date')[time_series_feature].plot(ax=ax)
+        ax.set_title(f'Time Series Plot of {time_series_feature}')
+        st.pyplot(fig)
+
+    # 20. Bootstrap Plot
+    st.subheader("Bootstrap Plot")
+    bootstrap_feature = st.selectbox("Select Feature for Bootstrap Plot", numeric_columns)
+    if bootstrap_feature:
+        fig, ax = plt.subplots()
+        sns.histplot(df[bootstrap_feature], kde=True, stat='density', linewidth=0, ax=ax)
+        ax.set_title(f'Bootstrap Plot of {bootstrap_feature}')
+        st.pyplot(fig)
