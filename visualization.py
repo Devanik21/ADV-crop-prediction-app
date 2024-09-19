@@ -185,6 +185,7 @@ def show_visualization():
         pairplot_fig.fig.suptitle('Matrix Plot', y=1.02)
         st.pyplot(pairplot_fig.fig)
 
+    
     # 19. Violin Plot
     st.subheader("Violin Plot")
     violin_x = st.selectbox("Select X-axis for Violin Plot", numeric_columns)
