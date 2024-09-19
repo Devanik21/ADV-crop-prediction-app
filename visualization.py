@@ -162,11 +162,10 @@ def show_visualization():
         ax.legend()
         st.pyplot(fig)
 
-    # 16. Facet Grid
     st.subheader("Facet Grid")
     facet_feature = st.selectbox("Select Feature for Facet Grid", numeric_columns)
     if facet_feature:
-        g = sns.FacetGrid(df, col='label')
+        g = sns.FacetGrid(df, col='label', height=4, aspect=2)
         g.map(sns.histplot, facet_feature)
         st.pyplot(g.fig)
 
