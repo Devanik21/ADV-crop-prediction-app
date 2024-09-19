@@ -124,3 +124,4 @@ def show_about(page):
         """)
 
 st.sidebar.image("rural-scene-farm-corn-crop-nature-growth-generated-by-ai.jpg", use_column_width=True)
+st.image("colorful-farm-fields-from-sunflower-wheat-rye-corn.jpg", use_column_width=True)
