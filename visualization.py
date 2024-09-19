@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from pandas.plotting import lag_plot
 
 # Load the dataset
 df = pd.read_csv("Crop_recommendation.csv")
@@ -174,7 +175,7 @@ def show_visualization():
     matrix_features = st.multiselect("Select Features for Matrix Plot", numeric_columns)
     if matrix_features:
         fig, ax = plt.subplots()
-        sns.plotting.matrix(df[matrix_features], ax=ax)
+        sns.pairplot(df[matrix_features], ax=ax)
         ax.set_title('Matrix Plot')
         st.pyplot(fig)
 
