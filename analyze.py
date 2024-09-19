@@ -176,13 +176,25 @@ def show_analyze():
         ax.set_title(f'Rug Plot of {rug_feature} (Sampled)')
         st.pyplot(fig)
 
-    # 14. Point Plot
+# 14. Point Plot
     point_feature = st.selectbox("Select a feature for Point plot", numeric_columns)
     if point_feature:
-        fig, ax = plt.subplots()
-        sns.pointplot(x=df_sampled.index, y=point_feature, data=df_sampled, ax=ax, color='purple')
-        ax.set_title(f'Point Plot of {point_feature} (Sampled)')
-        st.pyplot(fig)
+    # Increase image size (figsize) and adjust font sizes
+      fig, ax = plt.subplots(figsize=(10, 6))  # Increase figure size here
+      sns.pointplot(x=df_sampled.index, y=point_feature, data=df_sampled, ax=ax, color='purple')
+    
+    # Adjust title, xlabel, and ylabel font sizes
+      ax.set_title(f'Point Plot of {point_feature} (Sampled)', fontsize=14)  # Font size for title
+      ax.set_xlabel('Index', fontsize=12)  # Font size for x-axis label
+      ax.set_ylabel(point_feature, fontsize=12)  # Font size for y-axis label
+    
+    # Adjust the tick parameters
+      ax.tick_params(axis='x', labelsize=10)  # Font size of x-axis labels
+      ax.tick_params(axis='y', labelsize=10)  # Font size of y-axis labels
+    
+    # Display the plot
+      st.pyplot(fig)
+
 
     # 15. Density Plot
     density_feature = st.selectbox("Select a feature for Density plot", numeric_columns)
