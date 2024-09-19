@@ -122,3 +122,5 @@ def show_about(page):
         - **Interactive Insights**: Gain actionable insights with our interactive data analysis tools.
         - **User-Friendly Interface**: Navigate seamlessly with our modern, intuitive UI.
         """)
+
+st.sidebar.image("crop.jpg", use_column_width=True)
