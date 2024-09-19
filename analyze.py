@@ -156,13 +156,15 @@ def show_analyze():
         ax.set_title(f'Strip Plot of {strip_feature}')
         st.pyplot(fig)
 
-    # 12. Bar Plot
+# 12. Bar Plot
     bar_feature = st.selectbox("Select a feature for Bar plot", numeric_columns)
     if bar_feature:
-        fig, ax = plt.subplots()
-        df[bar_feature].value_counts().plot(kind='bar', ax=ax, color='blue')
-        ax.set_title(f'Bar Plot of {bar_feature}')
-        st.pyplot(fig)
+      fig, ax = plt.subplots()
+      df[bar_feature].value_counts().plot(kind='bar', ax=ax, color='blue')
+      ax.set_title(f'Bar Plot of {bar_feature}')
+      ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')  # Rotating labels for better readability
+      st.pyplot(fig)
+
 
     # 13. Rug Plot
     rug_feature = st.selectbox("Select a feature for Rug plot", numeric_columns)
