@@ -86,12 +86,14 @@ def show_visualization():
         st.pyplot(fig)
 
     # 8. Andrews Curves
+    # 8. Andrews Curves
     st.subheader("Andrews Curves")
-    if 'label' in df_sample.columns:
+    if 'label' in df.columns:
         fig, ax = plt.subplots()
-        pd.plotting.andrews_curves(df_sample, 'label', ax=ax)
+        pd.plotting.andrews_curves(df, 'label', ax=ax)
         ax.set_title('Andrews Curves')
         st.pyplot(fig)
+
 
     # 9. Lag Plot
     st.subheader("Lag Plot")
@@ -104,11 +106,12 @@ def show_visualization():
 
     # 10. Parallel Coordinates
     st.subheader("Parallel Coordinates")
-    if 'label' in df_sample.columns:
+    if 'label' in df.columns:
         fig, ax = plt.subplots()
-        pd.plotting.parallel_coordinates(df_sample, 'label', ax=ax)
+        pd.plotting.parallel_coordinates(df, 'label', ax=ax)
         ax.set_title('Parallel Coordinates')
         st.pyplot(fig)
+
 
     # 11. Bubble Plot
     st.subheader("Bubble Plot")
