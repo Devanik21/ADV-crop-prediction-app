@@ -93,7 +93,9 @@ def show_visualization():
     st.subheader("Lag Plot")
     lag_feature = st.selectbox("Select Feature for Lag Plot", numeric_columns)
     if lag_feature:
-        fig = sns.lag_plot(df[lag_feature])
+        fig, ax = plt.subplots()
+        lag_plot(df[lag_feature], ax=ax)
+        ax.set_title(f'Lag Plot of {lag_feature}')
         st.pyplot(fig)
 
     # 10. Parallel Coordinates
