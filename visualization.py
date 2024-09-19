@@ -170,32 +170,21 @@ def show_visualization():
         st.pyplot(g.fig)
 
     # 17. Matrix Plot
+    # 17. Matrix Plot
     st.subheader("Matrix Plot")
     matrix_features = st.multiselect("Select Features for Matrix Plot", numeric_columns)
     if matrix_features:
-        fig, ax = plt.subplots()
-        sns.pairplot(df[matrix_features], ax=ax)
-        ax.set_title('Matrix Plot')
-        st.pyplot(fig)
+        # Create the pairplot and adjust the figure size
+        pairplot_fig = sns.pairplot(df[matrix_features])
+        pairplot_fig.fig.set_size_inches(12, 8)  # Adjust size here
+        pairplot_fig.fig.suptitle('Matrix Plot', y=1.02)  # Adjust title position
+        st.pyplot(pairplot_fig.fig)
 
     # 18. Cat Plot
-    st.subheader("Cat Plot")
-    cat_feature = st.selectbox("Select Feature for Cat Plot", numeric_columns)
-    if cat_feature:
-        fig, ax = plt.subplots()
-        sns.catplot(x='label', y=cat_feature, kind='bar', data=df, ax=ax)
-        ax.set_title(f'Cat Plot: {cat_feature} by Label')
-        st.pyplot(fig)
+
 
     # 19. Time Series Plot
-    st.subheader("Time Series Plot")
-    if 'Date' in df.columns:
-        time_series_feature = st.selectbox("Select Feature for Time Series Plot", numeric_columns)
-        fig, ax = plt.subplots()
-        df['Date'] = pd.to_datetime(df['Date'])
-        df.set_index('Date')[time_series_feature].plot(ax=ax)
-        ax.set_title(f'Time Series Plot of {time_series_feature}')
-        st.pyplot(fig)
+
 
     # 20. Bootstrap Plot
     st.subheader("Bootstrap Plot")
