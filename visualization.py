@@ -186,14 +186,14 @@ def show_visualization():
         st.pyplot(pairplot_fig.fig)
 
     # 18. Cat Plot
-    st.subheader("Cat Plot")
+ '''   st.subheader("Cat Plot")
     cat_feature = st.selectbox("Select Feature for Cat Plot", numeric_columns)
     if cat_feature:
         fig, ax = plt.subplots()
         sns.catplot(x=cat_feature, kind='count', data=df_sample, ax=ax)
         ax.set_title(f'Cat Plot of {cat_feature}')
         st.pyplot(fig)
-
+'''
     # 19. Violin Plot
     st.subheader("Violin Plot")
     violin_x = st.selectbox("Select X-axis for Violin Plot", numeric_columns)
