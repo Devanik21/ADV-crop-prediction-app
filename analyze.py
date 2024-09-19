@@ -166,6 +166,7 @@ def show_analyze():
       st.pyplot(fig)
 
 
+
     # 13. Rug Plot
     rug_feature = st.selectbox("Select a feature for Rug plot", numeric_columns)
     if rug_feature:
