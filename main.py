@@ -63,7 +63,7 @@ st.markdown(
 )
 
 # Add image to the sidebar
-st.sidebar.image("closeup-shot-rice-plant-sunset-with-plantation-background.png", use_column_width=True)  # Update 'sidebar_image.png' with your image file name
+st.sidebar.image("closeup-shot-rice-plant-sunset-with-plantation-background.png", use_container_width =True)  # Update 'sidebar_image.png' with your image file name
 
 # Create a sidebar for navigation with a selectbox slider for main sections
 st.sidebar.title("🌟 Navigation")
@@ -123,5 +123,5 @@ def show_about(page):
         - **User-Friendly Interface**: Navigate seamlessly with our modern, intuitive UI.
         """)
 
-st.sidebar.image("rural-scene-farm-corn-crop-nature-growth-generated-by-ai.jpg", use_column_width=True)
-st.image("colorful-farm-fields-from-sunflower-wheat-rye-corn.jpg", use_column_width=True)
+st.sidebar.image("rural-scene-farm-corn-crop-nature-growth-generated-by-ai.jpg", use_container_width =True)
+st.image("colorful-farm-fields-from-sunflower-wheat-rye-corn.jpg", use_container_width =True)
